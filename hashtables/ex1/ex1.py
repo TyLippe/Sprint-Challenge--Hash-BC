@@ -12,7 +12,23 @@ def get_indices_of_item_weights(weights, length, limit):
     """
     YOUR CODE HERE
     """
+    #loop through weights and add to ht
+    for index in range(length):
+        hash_table_insert(ht, weights[index], index)
+    
+    #loop through ht and use retrieve to find our pair
+    for index in range(length): 
+        key = limit - weights[index]
+        second_index = hash_table_retrieve(ht, key)
 
+        #we want to put the greater index before the lesser
+        if second_index:
+            if second_index > index:
+                return [second_index, index]
+            else:
+                return [index, second_index]
+
+    #if a pair does not exist then return None
     return None
 
 
